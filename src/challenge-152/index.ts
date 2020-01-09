@@ -1,16 +1,22 @@
 export const strongestInterval = ([n, m]: number[]): number => {
-  let count = 0
-  for (let i = n; i > 0; i--) {
-    const nStrength = i / 2
-    if ((nStrength & 1) === 1) {
-      continue
-    } else count++
+  let maxStrength = 0
+  let smallestValue = 0
+  for (let i = n; i <= m; i++) {
+    const strength = getStrength(i)
+    if (strength > maxStrength) {
+      maxStrength = strength
+      smallestValue = i
+    }
   }
-  for (let i = m; i > 0; i--) {
-    const mStrength = i / 2
-    if ((mStrength & 1) === 1) {
-      continue
-    } else count++
+  return smallestValue
+}
+
+export const getStrength = (n: number): number => {
+  let strength = 0
+  for (; n > 0; n /= 2, strength++) {
+    if ((n & 1) === 1) {
+      break
+    }
   }
-  return count
+  return strength
 }
