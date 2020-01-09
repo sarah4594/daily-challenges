@@ -1,42 +1,34 @@
-export const enoughChange = (tickets: number[]) => {
-  const register = {
+export const enoughChange = (customers: number[]) => {
+  const register: any = {
     25: 0,
     50: 0,
     100: 0,
   }
-
-  let enough = true
-  for (let i = 0; i < tickets.length; i++) {
-    const ticket = tickets[i]
-    switch (ticket) {
-      case 25:
-        register[25]++
-        enough = true
-        break
-      case 50:
-        if (register[25] === 0) {
-          enough = false
-          break
-        } else {
-          register[50]++
-          register[25]--
-          enough = true
-        }
-        break
-      case 100:
-        if (register[25] === 0 || register[50] === 0) {
-          enough = false
-          break
-        } else {
-          register[100]++
-          register[50]--
-          register[25]--
-          enough = true
-          break
-        }
+  const checkRegister = (change: number): number => {
+    const bills = [100, 50, 25]
+    for (let i = 0; i < bills.length; i++) {
+      const bill = bills[i]
+      if (change >= bill && register[bill] > 0) {
+        register[bill]--
+        return bill
+      }
     }
-    console.log(register)
+    return 0
   }
-  if (enough === true) return 'YES'
-  else return 'NO'
+
+  const ticket = 25
+  for (let i = 0; i < customers.length; i++) {
+    const cash = customers[i]
+    register[cash]++
+    let change = cash - ticket
+    console.log({ cash, change, register })
+
+    while (change > 0) {
+      const bill = checkRegister(change)
+      if (bill === 0 && change > 0) return 'NO'
+      change -= bill
+    }
+    if (change !== 0) return 'NO'
+  }
+  return 'YES'
 }
