@@ -12,67 +12,28 @@ export const pokemonDamage = (
 }
 
 const howEffective = (yourType: string, opponentType: string): number => {
-  let effectiveness = 0
-  if (yourType === 'fire') {
-    switch (opponentType) {
-      case 'fire':
-        effectiveness = 0.5
-        break
-      case 'grass':
-        effectiveness = 2
-        break
-      case 'water':
-        effectiveness = 0.5
-        break
-      case 'electric':
-        effectiveness = 1
-        break
-    }
-  } else if (yourType === 'water') {
-    switch (opponentType) {
-      case 'fire':
-        effectiveness = 2
-        break
-      case 'grass':
-        effectiveness = 0.5
-        break
-      case 'water':
-        effectiveness = 0.5
-        break
-      case 'electric':
-        effectiveness = 0.5
-        break
-    }
-  } else if (yourType === 'grass') {
-    switch (opponentType) {
-      case 'fire':
-        effectiveness = 0.5
-        break
-      case 'grass':
-        effectiveness = 0.5
-        break
-      case 'water':
-        effectiveness = 2
-        break
-      case 'electric':
-        effectiveness = 1
-        break
-    }
-  } else if (yourType === 'electric') {
-    switch (opponentType) {
-      case 'fire':
-        effectiveness = 1
-        break
-      case 'grass':
-        effectiveness = 1
-        break
-      case 'water':
-        effectiveness = 2
-        break
-      case 'electric':
-        effectiveness = 0.5
-        break
-    }
+  const map: any = {
+    fire: {
+      grass: 2,
+      water: 0.5,
+      electric: 1,
+    },
+    water: {
+      fire: 2,
+      grass: 0.5,
+      electric: 0.5,
+    },
+    grass: {
+      fire: 0.5,
+      water: 2,
+      electric: 1,
+    },
+    electric: {
+      fire: 1,
+      grass: 1,
+      water: 2,
+    },
   }
-  return effectiveness
+
+  return yourType === opponentType ? 0.5 : map[yourType][opponentType]
 }
