@@ -9,9 +9,9 @@ describe('doomsDay', () => {
       'Infected Map: 11X000X111X111XX, Total Countries: 11, Infected Countries: 8, Percent Infected: 72.73%',
     )
     expect(doomsDay('XXXXX')).toBe('0')
-    // expect(doomsDay('00000000X00X0000')).toBe(
-    //   'Infected Map: 00000000X00X0000, Total Countries: 14, Infected Countries: 0, Percent Infected: 0.00%',
-    // )
+    expect(doomsDay('00000000X00X0000')).toBe(
+      'Infected Map: 00000000X00X0000, Total Countries: 14, Infected Countries: 0, Percent Infected: 0.00%',
+    )
     expect(doomsDay('01X000X010X011XX')).toBe(
       'Infected Map: 11X000X111X111XX, Total Countries: 11, Infected Countries: 8, Percent Infected: 72.73%',
     )
