@@ -1,27 +1,24 @@
 export const doomsDay = (s: string): string => {
   if (!s.includes('1') && !s.includes('0')) return '0'
-  const splitByOceans = s.split('X')
+  const continents = s.split('X')
   // ^ for some reason this adds an extra '' element when it ends in X
-  if (splitByOceans[splitByOceans.length - 1] === '') splitByOceans.pop()
-  let newMap = ''
+  if (continents[continents.length - 1] === '') continents.pop()
+  const newContinents: string[] = []
   let total = 0
   let infected = 0
-  splitByOceans.forEach((continent: string) => {
+
+  continents.forEach((continent: string) => {
     if (continent.includes('1')) {
       infected += continent.length
-      continent = continent.replace(/0/gi, '1')
+      continent = '1'.repeat(continent.length)
     }
     total += continent.length
-    newMap += `${continent}X`
+    newContinents.push(continent)
   })
-  // Need to be able to deal with if it doesn't end in X
-  const lastCharS = s.charAt(s.length - 1)
-  const lastCharM = newMap.charAt(newMap.length - 1)
-  const n = newMap.lastIndexOf(lastCharM)
-  // If map doesn't end in X, takes off extra X
-  if (lastCharS === '0') {
-    newMap = newMap.slice(0, n) + newMap.slice(n).replace(lastCharM, '')
-  }
+  let newMap = newContinents.join('X')
+  if (s.endsWith('X')) newMap += 'X'
   const percentage = ((infected / total) * 100).toFixed(2)
-  return `Infected Map: ${newMap}, Total Countries: ${total}, Infected Countries: ${infected}, Percent Infected: ${percentage}%`
+  const result = `Infected Map: ${newMap}, Total Countries: ${total}, Infected Countries: ${infected}, Percent Infected: ${percentage}%`
+  console.log(result)
+  return result
 }
