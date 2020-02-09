@@ -15,6 +15,7 @@ autoMorphic(13) => false
 13 squared is 69. Since 69 does not end in 13, return false.
 
 autoMorphic(25) => true
+625 % 100 = 25
 25 squared is 625. Since 625 ends in 25, return true.
 ```
 
