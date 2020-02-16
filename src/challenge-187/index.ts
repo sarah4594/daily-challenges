@@ -3,19 +3,18 @@ export const mostSales = (
   amounts: number[],
   prices: number[],
 ) => {
-  const total = [0]
-  let highestSales: any = []
+  let currentHighest = 0
+  let highestSales: string[] = []
   for (let i = 0; i < amounts.length; i++) {
-    total[i] = amounts[i] * prices[i]
-    if (total[i] > total[0]) {
+    const total = amounts[i] * prices[i]
+    if (total === 0) continue
+    if (total > currentHighest) {
+      // Reset highest sales with current product
       highestSales = [products[i]]
-      total[0] = total[i]
-    } else if (total[i] === total[0]) {
+      currentHighest = total
+    } else if (total === currentHighest) {
       highestSales.push(products[i])
     }
-  }
-  if (total[0] === 0) {
-    return 'There were no sales'
   }
   return highestSales
 }

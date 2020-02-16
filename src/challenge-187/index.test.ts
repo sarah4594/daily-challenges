@@ -30,6 +30,6 @@ describe('mostSales', () => {
     ).toEqual(['Cell Phones', 'Vacuum Cleaner'])
     expect(
       mostSales(['Cell Phones', 'Vacuum Cleaner'], [0, 0], [1, 1]),
-    ).toEqual('There were no sales')
+    ).toEqual([])
   })
 })
