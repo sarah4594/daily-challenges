@@ -4,8 +4,6 @@ export const addLetters = (arr: string[]): string => {
     total += letter.charCodeAt(0) - 96
   })
   if (total === 0) return ''
-  while (total > 26) {
-    total -= 26
-  }
+  total = ((total - 1) % 26) + 1
   return String.fromCharCode(total + 96)
 }
