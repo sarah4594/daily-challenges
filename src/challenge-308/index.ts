@@ -22,16 +22,21 @@ export const waveOrder = (arr: number[]): number[] => {
 }
 
 
-/* 
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-[10, 9, 8, 7, 6] [5, 4, 3, 2, 1]
+  export const isWaveSorted = (result: number[]): boolean => {
+    let order = false
+    for (let i = 0; i < result.length - 1; i++) {
+      if (i % 2 === 0 || i === 0) {
+        order = result[i] > result[i + 1]
+        console.log(order)
+      }
+      if (i % 2 !== 0 && i !== 0) {
+        order = result[i] < result[i + 1]
+        console.log(order)
+      }
+    }
+    return order
+  }
 
-[10, 5, 9, 8, 7, 6]
-
-
-
-*/
 
 /*
 

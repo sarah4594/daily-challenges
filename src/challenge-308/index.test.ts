@@ -1,15 +1,31 @@
-import { waveOrder } from '.'
+import { waveOrder, isWaveSorted } from '.'
 
 describe('waveOrder', () => {
   it('should take a sequence of numbers and put it in wave order', () => {
     // expect(waveOrder([1, 2, 3, 4])).toEqual([4, 2, 3, 1])
     expect(waveOrder([1, 2, 34, 4, 5, 5, 5, 65, 6, 65, 5454, 4])).toEqual([5454, 5, 65, 5, 65, 4, 34, 4, 6, 2, 5, 1])
-    
+    expect(waveOrder([3, 2, 5, 1, 6])).toEqual([6, 2, 5, 1, 3])
+    expect(waveOrder([1, 2, 3])).toEqual([3, 1, 2])
   })
   })
+
+  describe('isWaveSorted', () => {
+    it('should verify waveOrder', () => {
+      // expect(waveOrder([1, 2, 3, 4])).toEqual([4, 2, 3, 1])
+      expect(isWaveSorted([5, 2, 4, 1, 3])).toBe(true)
+      expect(isWaveSorted([5, 2, 4, 3, 1])).toBe(false)
+      expect(isWaveSorted([5454, 5, 65, 5, 65, 4, 34, 4, 6, 2, 5, 1])).toBe(true)
+      expect(isWaveSorted([6, 2, 5, 1, 3])).toBe(true)
+      expect(isWaveSorted([6, 2, 5, 1, 3])).toBe(true)
+      expect(isWaveSorted([3, 1, 2])).toBe(true)
+    })
+    })
 
 
     /*
+    [6, 5, 3, 2, 1]
+    [6, 5, 3] [2, 1]
+    [6, 2, 5, 1, 3]
     
     [5454, 65, 65, 34, 6, 5, 5, 5, 4, 4, 2, 1]
 
