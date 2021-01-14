@@ -6,11 +6,13 @@ export const waveOrder = (arr: number[]): number[] => {
   const arr2 = arr.slice(middle, arr.length)
 
   const result = []
-  for (let i = 0; i < arr1.length; i++){
+  for (let i = 0; i < arr2.length; i++){
     result.push(arr1[i])
     result.push(arr2[i])
   }
-    
+  if (arr1.length > arr2.length) {
+    result.push(arr1[arr1.length - 1])
+  }
 
   console.log(arr)
   console.log(arr1)
